@@ -8,23 +8,14 @@
         </title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="../css/pacman.css">
     </head>
     <body>
-        
-        <canvas id='canvas'>
-
-        </canvas>
-
-        <p id="key_name">
-            
-        </p>
-        <p id="key_code">
-
-        </p>
-
-        <script src="../source/gameLoop.js" async defer>
-            "use strict"
-        </script>
+        <p>Use the arrow keys to control the square object.</p>
+        <svg width="500px" height="500px" class="area">
+          <rect id="object1" x="10" y="10" width="20" height="20" fill="black" />
+        </svg>
     </body>
+    <script type="text/javascript" src="../source/input.js">
+    </script>
 </html>
