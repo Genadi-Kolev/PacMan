@@ -84,6 +84,6 @@ export default class Input {
         let y = this.position.y - (this.object1Size.height/2);
         let transform = "translate(" + x + " " + y + ")";
 
-        object1.setAttribute("transform", transform);
+        // object1.setAttribute("transform", transform);
     };
 };

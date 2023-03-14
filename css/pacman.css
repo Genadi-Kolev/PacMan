@@ -1,3 +1,45 @@
-.area {
-    background-color: #00FF00;
+body {
+    font-family: Calibri;
+    transition: 0.2s ease;
+    text-align: center;
+}
+
+.game-container {
+    margin: 0px auto;
+}
+
+#map-and-controls {
+    display: flexbox;
+    justify-content: center;
+}
+
+p {
+    padding: 0px;
+    margin: 10px, 0px;
+}
+
+.game-map {
+    position: relative;
+    margin: 0px auto;
+}
+
+div.layer,
+div.layer div {
+    position: absolute;
+}
+
+.default .floor {
+    background-color: lightgray;
+}
+
+.default .wall {
+    background-color: skyblue;
+}
+
+.player {
+    transform-origin: center;
+    transform: scale(0.85);
+    background-color: #90ee90;
+    border: 1px darkgreen;
+    transition: left 0.2s linear, top 0.2s linear;
 }

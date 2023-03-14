@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>PacMan: The Game</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="../css/pacman.css">
+    </head>
+    <body>
+        <div id="game-container-id" class="game-container">
+            <div id="map-and-controls"></div>
+            <div id="game-map-id" class="game-map">
+                <div id="tiles" class="layer"></div>
+                <div id="sprites" class="layer"></div>
+            </div>
+            <div>
+                <p id="text-1" class="text">
+                    Use cursor keys to move player
+                </p>
+            </div>
+        </div>
+        <script type="module" src="../source/engine.js" async defer></script>
+    </body>
+</html>
