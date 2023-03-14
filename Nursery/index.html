@@ -1,0 +1,19 @@
+<html>
+    <head>
+        <style>
+            .labyrinth {
+                position: relative;
+            }
+            #labyrinth {
+                position: absolute;
+                clip: rect(0, 100px, 200px, 0);
+                /* clip: shape(top, right, bottom, left); NB 'rect' is the only available option */
+            }
+        </style>
+    </head>
+    <body>
+        <div class="labyrinth">
+            <img id="labyrinth" src="spritesheet.png">
+        </div>
+    </body>
+</html>
