@@ -19,8 +19,9 @@ p {
 }
 
 .game-map {
-    position: relative;
-    margin: 0px auto;
+    position: absolute;
+    scale: 2;
+    left: 32%;
 }
 
 div.layer,
@@ -42,4 +43,14 @@ div.layer div {
     background-color: #90ee90;
     border: 1px darkgreen;
     transition: left 0.2s linear, top 0.2s linear;
+}
+
+.hidden {
+    display: none;
+}
+
+.tile {
+    position: relative;
+    clip-path: inset(8px 672px 232px 0px);
+                   /*up  left  down right  */
 }
