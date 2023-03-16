@@ -1,5 +1,5 @@
-import Input from './input.js';
-import createMap from './gamemap.js';
+import { Input } from './input.js';
+import { createMap } from './gamemap.js';
 
 
 window.onload = init;
@@ -12,10 +12,10 @@ class GameEngine {
         input.init();
         createMap();
 
-        setInterval(this.gameLoop, 16);
+        setInterval(this.#gameLoop, 16);
     };
 
-    gameLoop(_timeStamp) {
+    #gameLoop(_timeStamp) {
         input.consumeInput();
 
     }

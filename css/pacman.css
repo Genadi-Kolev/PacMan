@@ -4,15 +4,6 @@ body {
     text-align: center;
 }
 
-.game-container {
-    margin: 0px auto;
-}
-
-#map-and-controls {
-    display: flexbox;
-    justify-content: center;
-}
-
 p {
     padding: 0px;
     margin: 10px, 0px;
@@ -51,6 +42,6 @@ div.layer div {
 
 .tile {
     position: relative;
-    clip-path: inset(8px 672px 232px 0px);
+    clip-path: inset(0px 672px 240px 0px);
                    /*up  left  down right  */
 }

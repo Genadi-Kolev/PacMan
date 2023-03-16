@@ -1,4 +1,4 @@
-export default class Input {
+export class Input {
     // Declare and assign variables.
     moveRate = 2.2;
 
