@@ -1,5 +1,5 @@
 import { Input } from './input.js';
-import { createMap } from './gamemap.js';
+import { createMap, switchTiles } from './gamemap.js';
 
 
 window.onload = init;
@@ -23,7 +23,8 @@ class GameEngine {
 
 const engine = new GameEngine();
 
-function init() {
-    engine.init();
-};
+function init() { engine.init(); }
+
+function toggleTiles() { switchTiles(); }
+document.getElementById('switchButton').onclick = toggleTiles;
 

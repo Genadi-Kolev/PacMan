@@ -10,8 +10,7 @@
   * Try to build a "state of labyringh" array and to display the labyrinth w/ it w/ css clipping.
 
 # 16 March 2023
-* Labyrinth visuals from sprite sheet done
-
+* Labyrinth visuals from sprite sheet `done`
 * TODO:
-  * Create class 'Tile' that will hold the state, position and DOM elements, with methods to manage them.
+  * Create class 'Tile' that will represent each tile in code and expose methods, managing it `done`
 
