@@ -14,3 +14,7 @@
 * TODO:
   * Create class 'Tile' that will represent each tile in code and expose methods, managing it `done`
 
+# 17 March 2023
+* Homework
+  * Add the pacman to the map
+  * Try to think of ways to implement movement of the pacman.
