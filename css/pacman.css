@@ -28,12 +28,9 @@ div.layer div {
     background-color: skyblue;
 }
 
-.player {
-    transform-origin: center;
-    transform: scale(0.85);
-    background-color: #90ee90;
-    border: 1px darkgreen;
-    transition: left 0.2s linear, top 0.2s linear;
+.pacman {
+    position: relative;
+    /* clip-path: inset(0px 210px 233px 456px); */
 }
 
 .hidden {

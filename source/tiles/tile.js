@@ -10,24 +10,24 @@ class Tile {
 
         this.tileDim = 8;
 
-        this.#create();
+        this.object = this.#create();
     }
 
     #create() {
-        this.object = document.createElement('div');
+        const object = document.createElement('div');
         this.activeSprite = this.#createTileSprite(this.x, this.y, 0);
         this.inactiveSprite = this.#createTileSprite(this.x, this.y, 228);
 
-        this.object.appendChild(this.activeSprite);
-        this.object.appendChild(this.inactiveSprite);
+        object.appendChild(this.inactiveSprite);
+        object.appendChild(this.activeSprite);
         this.inactiveSprite.style.display = 'none';
 
-        this.object.className = this.type;
-        this.object.style.width = this.object.style.height = this.tileDim + 'px';
-        this.object.style.left = this.x * this.tileDim + 'px';
-        this.object.style.top = this.y * this.tileDim + 'px';
+        object.className = this.type;
+        object.style.width = object.style.height = this.tileDim + 'px';
+        object.style.left = this.x * this.tileDim + 'px';
+        object.style.top = this.y * this.tileDim + 'px';
 
-        return this;
+        return object;
     }
 
     #createTileSprite(x, y, increment) {

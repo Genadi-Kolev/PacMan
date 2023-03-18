@@ -1,7 +1,7 @@
-import { game_map } from './game_maps/levels.js'
 import { Tile } from './tiles/tile.js'
+import { Pacman } from './characters/pacman.js';
 
-class Game {
+export class Game {
 
     constructor(id, level) {
         this.el = document.getElementById(id);
@@ -18,10 +18,10 @@ class Game {
 
     populateMap() {
         this.el.className = 'game-container ' + this.theme;
-        let tiles = document.getElementById('tiles');
+        const tiles = document.getElementById('tiles');
 
         for (let x = 0; x < this.matrix.length; x++) {
-            let tempArr = [];
+            const tempArr = [];
             for (let y = 0; y < this.matrix[x].length; y++) {
                 let tileCode = this.matrix[x][y];
                 let tileType = this.tileTypes[tileCode];
@@ -34,17 +34,11 @@ class Game {
             this.map.push(tempArr);
         }
     }
-}
 
-const game = new Game('game-container-id', game_map);
-
-export function createMap() { game.populateMap(); }
-
-/** Temp function to toggle tiles: Debugging purposes */
-export function switchTiles() {
-    for (let y = 0; y < game.map.length; y++) {
-        for (let x = 0; x < game.map[y].length; x++) {
-            game.map[y][x].toggleTile();
-        }
+    addCharacters() {
+        const pacman = new Pacman();
+        pacman.spawn();
     }
 }
+
+
