@@ -42,3 +42,7 @@ div.layer div {
     clip-path: inset(0px 672px 240px 0px);
                    /*up  left  down right  */
 }
+
+canvas {
+    background-color: transparent;
+}

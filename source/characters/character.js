@@ -1,13 +1,16 @@
-export class Character {
+import { context, image } from "../engine.js";
 
-    _controller = undefined;
+export class Character {
+    
+    animCycleLoop = undefined;
 
     constructor(controller) {
         this._controller = controller;
+        this._currentLoopIndex = 0;
+        this._frameCount = 20;
     }
 
     _moveRate = 0;
-    /** @param {Number} value */
     set moveRate(value) {
         if (value < 0) {
             value = 0;
@@ -21,18 +24,22 @@ export class Character {
 
     /** Starting coordinates; will change during runtime */
     _position = {
-        x: 12.5,
-        y: 22
+        x: 0,
+        y: 0
     };
-    /** @param {Number} value */
     setPosition(x, y) {
-        if (x < 0) {
-            x = 0;
-        }
-        this._position.x = value;
+        this._position.x = x < 0 ? 28 : x;
+        this._position.x = x > 28 ? 0 : x;
+
+        this._position.y = y < 0 ? 31 : y;
+        this._position.y = y > 31 ? 0 : y;
     }
-    getPosition() {
-        return this._position;
+    get position() { return this._position; }
+
+    _drawFrame(frameX, frameY) {
+        context.drawImage(image,
+            456 + frameX * 16, 0 + frameY * 16, 16, 16,
+            this.position.x * 8, (this.position.y - 0.5) * 8, 16, 16);
     }
 
     consumeInput() {

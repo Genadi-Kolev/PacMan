@@ -6,20 +6,32 @@ window.onload = init;
 
 const game = new Game('game-container-id', game_map);
 const input = new Input();
+const gameObjects = [];
+
+const image = new Image();
+image.src = '../Nursery/spritesheet.png'
+const canvas = document.getElementById('canvas');
+const context = canvas.getContext('2d');
+
+export { canvas, context, image };
 
 class GameEngine {
+
 
     init() {
         input.init();
 
         game.populateMap();
-        game.addPacman(input);
-
+        const player = game.addPacman(input);
+        gameObjects.push(player);
+      
         setInterval(this.#gameLoop, 16);
     };
 
-    #gameLoop(_timeStamp) {
-
+    #gameLoop() {
+        gameObjects.forEach( object => {
+            object.updateAnimation();
+        });
     }
 };
 

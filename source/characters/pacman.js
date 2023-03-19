@@ -1,33 +1,28 @@
 import { Character } from "./character.js";
+import { context, canvas } from "../engine.js";
 
 export class Pacman extends Character {
 
     constructor(input) {
         super(input);
 
+        this.setPosition(13, 23);
         this.moveRate = 2.2;
-    };
+        this.animCycleLoop = [0, 1];
+    }
 
-    spawn() {
-        const layer = document.getElementById('sprites');
-        const player = this.#createSprite(
-            this.getPosition().x,
-            this.getPosition().y
-        );
+    updateAnimation() {
+        this._frameCount++;
+        if (this._frameCount < 15)
+            return;
 
-        layer.appendChild(player);
-    };
-
-    #createSprite(x, y) {
-        const sprite = document.createElement('img');
-
-        sprite.src = '../Nursery/spritesheet.png';
-        sprite.className = 'pacman';
-        sprite.style.clipPath = 'inset(0px 210px 233px 456px)';
-        sprite.style.left = -451 + x * 8 + 'px';    // (-451;4) place the sprite 
-        sprite.style.top = 4 + y * 8 + 'px';        // at (1;1) in the matrix grid
-
-        return sprite;
-    };
-
+        this._frameCount = 0;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        this._drawFrame(this.animCycleLoop[this._currentLoopIndex], 0);
+        
+        this._currentLoopIndex++;
+        if (this._currentLoopIndex >= this.animCycleLoop.length) {
+          this._currentLoopIndex = 0;
+        }
+    }
 };

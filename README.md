@@ -18,3 +18,16 @@
 * Homework
   * Add the pacman to the map
   * Try to think of ways to implement movement of the pacman.
+
+# 18 March 2023
+* Add Pacman to map `done`
+* TODO:
+  * Animate him
+  * Add controller
+
+# 19 March 2023
+* Initial Pacman animation (only for right direction)
+    Sprites for characters will/are drawn on a transparent <canvas> element, placed on top of the labytinth layer
+* TODO:
+  * 4-way animations
+  * Add controller

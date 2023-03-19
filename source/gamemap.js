@@ -5,7 +5,6 @@ export class Game {
 
     constructor(id, level) {
         this.el = document.getElementById(id);
-        this.spritesheet = document.getElementById('spritesheet');
 
         this.tileTypes = ['floor', 'wall'];
         this.map = [];
@@ -25,9 +24,9 @@ export class Game {
             for (let y = 0; y < this.matrix[x].length; y++) {
                 let tileCode = this.matrix[x][y];
                 let tileType = this.tileTypes[tileCode];
-                
+
                 let tile = new Tile(y, x, tileType);
-                
+
                 tiles.appendChild(tile.object);
                 tempArr.push(tile);
             }
@@ -37,7 +36,7 @@ export class Game {
 
     addPacman(input) {
         const pacman = new Pacman(input);
-        pacman.spawn();
+        return pacman;
     }
 }
 
