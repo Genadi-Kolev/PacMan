@@ -35,8 +35,8 @@ export class Game {
         }
     }
 
-    addCharacters() {
-        const pacman = new Pacman();
+    addPacman(input) {
+        const pacman = new Pacman(input);
         pacman.spawn();
     }
 }

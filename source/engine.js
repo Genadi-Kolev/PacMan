@@ -13,13 +13,12 @@ class GameEngine {
         input.init();
 
         game.populateMap();
-        game.addCharacters();
+        game.addPacman(input);
 
         setInterval(this.#gameLoop, 16);
     };
 
     #gameLoop(_timeStamp) {
-        input.consumeInput();
 
     }
 };
