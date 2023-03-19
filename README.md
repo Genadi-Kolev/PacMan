@@ -27,7 +27,11 @@
 
 # 19 March 2023
 * Initial Pacman animation (only for right direction)
-    Sprites for characters will/are drawn on a transparent <canvas> element, placed on top of the labytinth layer
+    Sprites for characters will/are drawn on a transparent canvas element, placed on top of the labytinth layer
 * TODO:
-  * 4-way animations
-  * Add controller
+  * 4-way animations `done` 
+  * Add controller `done`
+* Edit: Pacman now has a controller(WASD) and is animated. Both objects expose methods to the GameEngine that manages them
+  * TODO:
+    * Collision check with underlying labyrinth
+  

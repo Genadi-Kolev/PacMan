@@ -34,10 +34,16 @@ export class Game {
         }
     }
 
-    addPacman(input) {
-        const pacman = new Pacman(input);
-        return pacman;
+    spawnCharacters() {
+        const charactersArr = [];
+
+        const pacman = this.#addPacman();
+        charactersArr.push(pacman);
+
+        return charactersArr;
     }
+
+    #addPacman() { return new Pacman(); }
 }
 
 
