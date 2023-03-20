@@ -1,17 +1,20 @@
+<!DOCTYPE html>
 <html>
     <head>
         <title>PacMan: The Game</title>
+        <meta charset="utf-8">
+        <meta lang="en-us">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../css/pacman.css">
     </head>
     <body>
         <div id="game-container-id" class="game-container">
             <div>
-                <p id="text-1" class="text">
+                <p>
                     Use cursor keys to move player
                 </p>
             </div>
-            <div id="game-map-id" class="game-map">
+            <div class="game-map">
                 <div id="tiles" class="layer"></div>
                 <div id="sprites" class="layer">
                     <canvas id="canvas" width="224" height="248"></canvas>
@@ -19,9 +22,6 @@
             </div>
             <img src="../Nursery/spritesheet.png" id="spritesheet" class="hidden">
         </div>
-        <button id="switchButton" style="position: absolute;">
-            switchTiles
-        </button>
 
         <script type="module" src="../source/engine.js"></script>
     </body>

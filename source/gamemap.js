@@ -3,29 +3,22 @@ import { Pacman } from './characters/pacman.js';
 
 export class Game {
 
-    constructor(id, level) {
-        this.el = document.getElementById(id);
-
+    constructor(level) {
         this.tileTypes = ['floor', 'wall'];
         this.map = [];
-
-        // inherit the level's properties: map, player start, goal start.
-        this.matrix = level.map;
-        this.theme = level.theme;
-        this.player = { ...level.player };
+        this.dataMatrix = level;
     }
 
     populateMap() {
-        this.el.className = 'game-container ' + this.theme;
         const tiles = document.getElementById('tiles');
 
-        for (let x = 0; x < this.matrix.length; x++) {
+        for (let x = 0; x < this.dataMatrix.length; x++) {
             const tempArr = [];
-            for (let y = 0; y < this.matrix[x].length; y++) {
-                let tileCode = this.matrix[x][y];
-                let tileType = this.tileTypes[tileCode];
+            for (let y = 0; y < this.dataMatrix[x].length; y++) {
+                const tileCode = this.dataMatrix[x][y];
+                const tileType = this.tileTypes[tileCode];
 
-                let tile = new Tile(y, x, tileType);
+                const tile = new Tile(y, x, tileType);
 
                 tiles.appendChild(tile.object);
                 tempArr.push(tile);

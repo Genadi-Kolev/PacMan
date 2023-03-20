@@ -13,10 +13,15 @@ export class Pacman extends Character {
         this.setPosition(13.5,23);
         this.moveRate = 0.05;
         this.animCycleLoop = [0, 1];
-        this.row = 0;
+        this.frameRow = 0;
     }
 
-    updateAnimation() {
+    update() {
+        this._consumeInput();
+        this.#updateAnimation();
+    }
+
+    #updateAnimation() {
         this._frameCount++;
         if (this._frameCount < 13)
             return;
@@ -25,8 +30,8 @@ export class Pacman extends Character {
         context.clearRect(0, 0, canvas.width, canvas.height);
 
         const column = this.animCycleLoop[this._currentLoopIndex];
-        this.row = this.#handleInput();
-        this._drawFrame(column, this.row);
+        this.frameRow = this.#handleInput();
+        this._drawFrame(column, this.frameRow);
 
         this._currentLoopIndex++;
         if (this._currentLoopIndex >= this.animCycleLoop.length) {
@@ -36,7 +41,7 @@ export class Pacman extends Character {
 
     #handleInput() {
         if (this.collisionCheck())
-            return this.row;
+            return this.frameRow;
 
         if (this._controller.input.x > 0)
             return 0;

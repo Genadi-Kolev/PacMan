@@ -1,4 +1,4 @@
-class Tile {
+export class Tile {
 
     object;
     activeSprite; inactiveSprite;
@@ -61,6 +61,3 @@ class Tile {
         }
     }
 };
-
-
-export { Tile };

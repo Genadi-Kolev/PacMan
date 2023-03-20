@@ -1,6 +1,5 @@
 body {
     font-family: Calibri;
-    transition: 0.2s ease;
     text-align: center;
 }
 
@@ -20,17 +19,8 @@ div.layer div {
     position: absolute;
 }
 
-.default .floor {
-    background-color: lightgray;
-}
-
-.default .wall {
-    background-color: skyblue;
-}
-
 .pacman {
     position: relative;
-    /* clip-path: inset(0px 210px 233px 456px); */
 }
 
 .hidden {

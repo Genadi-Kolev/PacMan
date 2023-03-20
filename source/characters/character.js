@@ -50,7 +50,7 @@ export class Character {
             (this.position.x - 0.5) * 8, (this.position.y - 0.5) * 8, 16, 16);
     }
 
-    consumeInput() {
+    _consumeInput() {
         const input = {
             x: this._controller.input.x,
             y: this._controller.input.y
@@ -82,8 +82,6 @@ export class Character {
 
     /**
      * Check for collision in Controller's direction
-     * @param {Number} x 
-     * @param {Number} y 
      */
     collisionCheck() {
         const x = Math.round(this.#position.x);

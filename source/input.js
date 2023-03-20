@@ -1,5 +1,4 @@
 export class Input {
-    // Declare and assign variables.
 
     input = {
         x: 0,

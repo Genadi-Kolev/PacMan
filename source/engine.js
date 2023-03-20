@@ -16,7 +16,7 @@ let gameObjects = [];
 class GameEngine {
 
     init() {
-        const game = new Game('game-container-id', game_map);
+        const game = new Game(game_map);
         game.populateMap();
         const objects = game.spawnCharacters();
         gameObjects = gameObjects.concat(objects);
@@ -26,8 +26,7 @@ class GameEngine {
 
     #gameLoop() {
         gameObjects.forEach(object => {
-            object.consumeInput();
-            object.updateAnimation();
+            object.update();
         });
     }
 };
@@ -35,14 +34,3 @@ class GameEngine {
 const engine = new GameEngine();
 
 function init() { engine.init(); }
-
-
-/** Temp function to toggle tiles: Debugging purposes */
-function switchTiles() {
-    for (let y = 0; y < game.map.length; y++) {
-        for (let x = 0; x < game.map[y].length; x++) {
-            game.map[y][x].toggleTile();
-        }
-    }
-}
-document.getElementById('switchButton').onclick = switchTiles;
