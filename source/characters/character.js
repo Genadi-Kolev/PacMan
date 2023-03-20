@@ -3,11 +3,17 @@ import { context, image } from "../engine.js";
 export class Character {
 
     animCycleLoop = undefined;
+    #map = undefined;
+    #inputCache = undefined;
 
-    constructor(controller) {
+    constructor(controller, map) {
         this._controller = controller;
+        this.#inputCache = { x: 0, y: 0 };
+
         this._currentLoopIndex = 0;
         this._frameCount = 20;
+
+        this.#map = map;
     }
 
     #moveRate = 0;
@@ -30,10 +36,10 @@ export class Character {
     setPosition(x, y) {
         this.position.x = x;
         this.position.y = y;
-        
-        if (this.position.x < 0) 
+
+        if (this.position.x < 0)
             this.position.x = 28;
-        else if (this.position.x > 28) 
+        else if (this.position.x > 28)
             this.position.x = 0;
     }
     get position() { return this.#position; }
@@ -41,7 +47,7 @@ export class Character {
     _drawFrame(frameX, frameY) {
         context.drawImage(image,
             456 + frameX * 16, 0 + frameY * 16, 16, 16,
-            this.position.x * 8, (this.position.y - 0.5) * 8, 16, 16);
+            (this.position.x - 0.5) * 8, (this.position.y - 0.5) * 8, 16, 16);
     }
 
     consumeInput() {
@@ -54,9 +60,37 @@ export class Character {
     };
 
     #refreshPosition(x, y) {
+        let deltaX = 0;
+        let deltaY = 0;
+
+        if (this.collisionCheck()) {
+            deltaX = (x != this.#inputCache.x) ? this.moveRate * this.#inputCache.x : 0;
+            deltaY = (y != -this.#inputCache.y) ? this.moveRate * -this.#inputCache.y : 0;
+        }
+        else {
+            this.#inputCache = { ...this._controller.input };
+
+            deltaX = this.moveRate * x;
+            deltaY = this.moveRate * y;
+        }
+
         this.setPosition(
-            this.position.x + this.moveRate * x,
-            this.position.y + this.moveRate * y
+            this.position.x + deltaX,
+            this.position.y + deltaY
         );
+    }
+
+    /**
+     * Check for collision in Controller's direction
+     * @param {Number} x 
+     * @param {Number} y 
+     */
+    collisionCheck() {
+        const x = Math.round(this.#position.x);
+        const y = Math.round(this.#position.y);
+
+        const nextTile = this.#map[y + (1 * -this._controller.input.y)][x + (1 * this._controller.input.x)];
+
+        return nextTile.type == 'wall' ? true : false;
     }
 };

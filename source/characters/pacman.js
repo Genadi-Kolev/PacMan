@@ -4,15 +4,16 @@ import { Input } from "../input.js";
 
 export class Pacman extends Character {
 
-    constructor() {
+    constructor(map) {
         const input = new Input();
         input.init();
-        super(input);
+        super(input, map);
 
         this.controller = input;
-        this.setPosition(13, 23);
+        this.setPosition(13.5,23);
         this.moveRate = 0.05;
         this.animCycleLoop = [0, 1];
+        this.row = 0;
     }
 
     updateAnimation() {
@@ -24,8 +25,8 @@ export class Pacman extends Character {
         context.clearRect(0, 0, canvas.width, canvas.height);
 
         const column = this.animCycleLoop[this._currentLoopIndex];
-        const row = this.#handleInput();
-        this._drawFrame(column, row);
+        this.row = this.#handleInput();
+        this._drawFrame(column, this.row);
 
         this._currentLoopIndex++;
         if (this._currentLoopIndex >= this.animCycleLoop.length) {
@@ -34,6 +35,9 @@ export class Pacman extends Character {
     }
 
     #handleInput() {
+        if (this.collisionCheck())
+            return this.row;
+
         if (this._controller.input.x > 0)
             return 0;
         if (this._controller.input.y < 0 )

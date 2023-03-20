@@ -37,13 +37,13 @@ export class Game {
     spawnCharacters() {
         const charactersArr = [];
 
-        const pacman = this.#addPacman();
+        const pacman = this.#addPacman(this.map);
         charactersArr.push(pacman);
 
         return charactersArr;
     }
 
-    #addPacman() { return new Pacman(); }
+    #addPacman(map) { return new Pacman(map); }
 }
 
 
