@@ -34,4 +34,9 @@
 * Edit: Pacman now has a controller(WASD) and is animated. Both objects expose methods to the GameEngine that manages them
   * TODO:
     * Collision check with underlying labyrinth
+
+# 20 March 2023
+  Homework
+  * Make the pacman to move only in allowed tiles{not walls}
+  * Add ghosts to the map
   
