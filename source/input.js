@@ -13,11 +13,11 @@ export class Input {
             switch (event.code) {
                 case 'KeyS':
                     this.input.x = 0;
-                    this.input.y = -1;
+                    this.input.y = 1;
                     break;
                 case 'KeyW':
                     this.input.x = 0;
-                    this.input.y = 1;
+                    this.input.y = -1;
                     break;
                 case 'KeyA':
                     this.input.x = -1;
@@ -26,11 +26,7 @@ export class Input {
                 case 'KeyD':
                     this.input.x = 1;
                     this.input.y = 0;
-                    break;
-                case 'Escape':
-                    this.input.x = 0;
-                    this.input.y = 0;
-                    break;
+                    break;        
             }
             event.preventDefault();
         }, false);

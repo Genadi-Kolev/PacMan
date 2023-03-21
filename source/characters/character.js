@@ -56,7 +56,7 @@ export class Character {
             y: this._controller.input.y
         };
 
-        this.#refreshPosition(input.x, -input.y);
+        this.#refreshPosition(input.x, input.y);
     };
 
     #refreshPosition(x, y) {
@@ -64,8 +64,9 @@ export class Character {
         let deltaY = 0;
 
         if (this.collisionCheck()) {
+
             deltaX = (x != this.#inputCache.x) ? this.moveRate * this.#inputCache.x : 0;
-            deltaY = (y != -this.#inputCache.y) ? this.moveRate * -this.#inputCache.y : 0;
+            deltaY = (y != this.#inputCache.y) ? this.moveRate * this.#inputCache.y : 0;
         }
         else {
             this.#inputCache = { ...this._controller.input };
@@ -78,14 +79,44 @@ export class Character {
             this.position.x + deltaX,
             this.position.y + deltaY
         );
+        // console.log(this.position.x + ' ' + this.position.y);
     }
 
     /**
      * Check for collision in Controller's direction
      */
     collisionCheck() {
-        const x = Math.round(this.#position.x);
-        const y = Math.round(this.#position.y);
+        let x = 0;
+        let y = 0;
+        // console.group('Collision checks')
+        // console.log('input -> x: ' + this._controller.input.x + ' | y: ' + this._controller.input.y)
+
+        switch (this._controller.input.x) {
+            case -1:
+                x = Math.ceil(this.#position.x);
+                break;
+            case 1:
+                x = Math.floor(this.#position.x);
+                break;
+            default:
+                x = Math.round(this.#position.x);
+                break;
+        }
+
+        switch (this._controller.input.y) {
+            case -1:
+                y = Math.floor(this.#position.y);
+                break;
+            case 1:
+                y = Math.ceil(this.#position.y);
+                break;
+            default:
+                y = Math.round(this.#position.y);;
+                break;
+        }
+        // console.log(y + ' ' + x);
+        // console.log((y + (1 * -this._controller.input.y)) + ' ' + (x + (1 * this._controller.input.x)))
+        // console.groupEnd();
 
         const nextTile = this.#map[y + (1 * -this._controller.input.y)][x + (1 * this._controller.input.x)];
 

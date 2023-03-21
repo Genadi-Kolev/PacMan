@@ -23,7 +23,7 @@ export class Pacman extends Character {
 
     #updateAnimation() {
         this._frameCount++;
-        if (this._frameCount < 13)
+        if (this._frameCount < 9)
             return;
 
         this._frameCount = 0;
@@ -46,9 +46,9 @@ export class Pacman extends Character {
         if (this._controller.input.x > 0)
             return 0;
         if (this._controller.input.y < 0 )
-            return 3;
-        if (this._controller.input.y > 0)
             return 2;
+        if (this._controller.input.y > 0)
+            return 3;
         if (this._controller.input.x < 0)
             return 1;
 
