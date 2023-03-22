@@ -31,7 +31,7 @@
 * TODO:
   * 4-way animations `done` 
   * Add controller `done`
-* Edit: Pacman now has a controller(WASD) and is animated. Both objects expose methods to the GameEngine that manages them
+* <ins>Edit</ins>: Pacman now has a controller(WASD) and is animated. Both objects expose methods to the GameEngine that manages them
   * TODO:
     * Collision check with underlying labyrinth
 
@@ -42,15 +42,21 @@
 
 # 22 March 2023
   * TODO: Change game to use HTML Canvas instead of two div 'layers' `done`
-Edit:
-  * Draw map on screen based on initial level matrix
-  * TODO: 
-    * Add visuals from sprite sheet `done`
-    * Add pacman to map `done`
-Edit:
-  * Added visuals to map from spritesheet `done`
-Edit: 
-  * Propper collision `DONE!`
-  * Pacman animations restored `done`
-  * TODO:
-    * Add score pellets to map
+  * <ins>Edit</ins>:
+    * Draw map on screen based on initial level matrix
+    * TODO: 
+      * Add visuals from sprite sheet `done`
+      * Add pacman to map `done`
+  * <ins>Edit</ins>:
+    * Added visuals to map from spritesheet `done`
+  * <ins>Edit</ins>: 
+    * Propper collision `DONE!`
+    * Pacman animations restored `done`
+    * TODO:
+      * Add score pellets to map `done`
+  * <ins>Edit</ins>: 
+    * Added score pellets to map
+    * *Win condition*: eat all pellets to win
+    
+Overall, whole day involved changes to the codebase, ranging from minor refactoring to major redesign. Master branch up to date 
+

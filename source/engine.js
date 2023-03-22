@@ -9,11 +9,12 @@ const text = document.getElementById('score_text')
 canvas.width = innerWidth
 canvas.height = innerHeight
 
-const boundries = []
+const walls = []
 const characters = []
 const pellets = []
 
 let score = 0
+let requestId = undefined
 
 class Engine {
     constructor() {
@@ -22,7 +23,7 @@ class Engine {
 
     init() {
         this.game.createPacman(characters)
-        this.game.createMap(boundries, pellets)
+        this.game.createMap(walls, pellets)
 
         this.startGameLoop()
     }
@@ -31,12 +32,12 @@ class Engine {
         function tick() {
             c.clearRect(0, 0, canvas.width, canvas.height)
 
-            boundries.forEach((boundry) => {
-                boundry.draw()
+            walls.forEach((wall) => {
+                wall.draw()
             })
 
             characters.forEach(character => {
-                character.collisionCheck(boundries)
+                character.collisionCheck(walls)
                 character.update()
             })
 
@@ -49,15 +50,31 @@ class Engine {
                     text_score.innerHTML = score++ * 10
                 }
             }
-            if (pellets.length-1 == 0)
+            if (pellets.length - 1 == 0) {
                 text.innerHTML = 'You have Won!!'
+                requestId = undefined
+            }
 
-            requestAnimationFrame(tick)
+            if (requestId)
+                requestId = requestAnimationFrame(tick)
         }
-        requestAnimationFrame(tick)
+        requestId = requestAnimationFrame(tick)
     }
 }
 
 const engine = new Engine()
 engine.init()
+
+addEventListener('keypress', ({ key }) => {
+    if (key != '`')
+        return
+
+    console.log(requestId)
+    if (!requestId) {
+        engine.startGameLoop()
+    } else {
+        cancelAnimationFrame(requestId)
+        requestId = undefined
+    }
+})
 
