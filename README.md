@@ -45,5 +45,7 @@
 Edit:
   * Draw map on screen based on initial level matrix
   * TODO: 
-    * Add visuals from sprite sheet
+    * Add visuals from sprite sheet `done`
     * Add pacman to map
+Edit:
+  * Added visuals to map from spritesheet

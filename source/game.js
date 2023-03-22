@@ -1,24 +1,23 @@
 import { game_map } from "./level.js";
-import { Boundry } from "./Boundry.js";
+import { Boundry } from "./boundry.js";
+
+export const image = new Image();
+image.src = '../Nursery/spritesheet.png'
 
 const objects = []
 
 export class Game {
     createMap() {
         game_map.forEach((row, i) => {
-            row.forEach((num, j) => {
-                switch (num) {
-                    case 1:
-                        objects.push(
-                            new Boundry({
-                                position: {
-                                    x: Boundry.width * j,
-                                    y: Boundry.height * i
-                                }
-                            })
-                        )
-                        break;
-                }
+            row.forEach((_, j) => {
+                objects.push(
+                    new Boundry({
+                        position: {
+                            x: j,
+                            y: i
+                        }
+                    })
+                )
             })
         })
     }

@@ -16,15 +16,20 @@ class Engine {
         const objects = game.fetchObjects()
         game_objects = game_objects.concat(objects);
 
-        setInterval(this.#gameLoop, 16)
+        this.#gameLoop()
     }
 
     #gameLoop() {
-        c.clearRect(0, 0, canvas.width, canvas.height)
+        function tick() {
+            c.clearRect(0, 0, canvas.width, canvas.height)
+    
+            game_objects.forEach((object) => {
+                object.update()
+            })
 
-        game_objects.forEach((object) => {
-            object.update()
-        })
+            requestAnimationFrame(tick)
+        }
+        requestAnimationFrame(tick)
     }
 }
 
