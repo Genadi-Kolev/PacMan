@@ -1,28 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>PacMan: The Game</title>
         <meta charset="utf-8">
-        <meta lang="en-us">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Pacman</title>
+        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="../css/pacman.css">
     </head>
     <body>
-        <div id="game-container-id" class="game-container">
-            <div>
-                <p>
-                    Use cursor keys to move player
-                </p>
-            </div>
-            <div class="game-map">
-                <div id="tiles" class="layer"></div>
-                <div id="sprites" class="layer">
-                    <canvas id="canvas" width="224" height="248"></canvas>
-                </div>
-            </div>
-            <img src="../Nursery/spritesheet.png" id="spritesheet" class="hidden">
-        </div>
-
+        <canvas></canvas>
         <script type="module" src="../source/engine.js"></script>
     </body>
 </html>

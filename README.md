@@ -41,5 +41,9 @@
   * Add ghosts to the map
 
 # 22 March 2023
-  * TODO: Change game map to use HTML Canvas instead of two div 'layers'
-    
+  * TODO: Change game to use HTML Canvas instead of two div 'layers' `done`
+Edit:
+  * Draw map on screen based on initial level matrix
+  * TODO: 
+    * Add visuals from sprite sheet
+    * Add pacman to map
