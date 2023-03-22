@@ -46,6 +46,11 @@ Edit:
   * Draw map on screen based on initial level matrix
   * TODO: 
     * Add visuals from sprite sheet `done`
-    * Add pacman to map
+    * Add pacman to map `done`
 Edit:
-  * Added visuals to map from spritesheet
+  * Added visuals to map from spritesheet `done`
+Edit: 
+  * Propper collision `DONE!`
+  * Pacman animations restored `done`
+  * TODO:
+    * Add score pellets to map

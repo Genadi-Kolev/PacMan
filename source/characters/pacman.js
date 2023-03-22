@@ -1,9 +1,12 @@
 import { c } from "../engine.js"
-import { Game } from "../game.js"
+import { Game, image } from "../game.js"
 import { Tile } from "../tile.js"
 
 export class Player {
     static moveRate = 1
+
+    animCycleLoop = [0, 1, 0]
+    frameRow = 0
 
     constructor({ position, velocity, controller }) {
         Player.moveRate *= Game.scale
@@ -13,20 +16,30 @@ export class Player {
         }
         this.velocity = velocity
         this.controller = controller
-        this.radius = 3.5 * Game.scale
+        this.radius = 3 * Game.scale
 
         this.controller.init()
+        this._frameCount = 10
+        this._currentLoopIndex = 0
     }
 
     draw() {
-        c.beginPath()
-        c.arc(this.position.x, this.position.y, this.radius, 0, Math.PI * 2)
-        c.fillStyle = 'yellow'
-        c.fill()
-        c.closePath
+        const column = this.animCycleLoop[this._currentLoopIndex];
+        this.#drawFrame(column, this.frameRow);
+        
+        this._frameCount++;
+        if (this._frameCount < 6)
+            return;
+        this._frameCount = 0;
+
+        this._currentLoopIndex++;
+        if (this._currentLoopIndex >= this.animCycleLoop.length) {
+            this._currentLoopIndex = 0;
+        }
     }
 
     collisionCheck(boundries) {
+        const rowCache = this.frameRow
         if (this.controller.direction === 'up') {
             for (let i = 0; i < boundries.length; i++) {
                 const boundry = boundries[i];
@@ -42,9 +55,12 @@ export class Player {
                     })
                 ) {
                     this.velocity.y = 0
+                    this.frameRow = rowCache
                     break
-                } else
+                } else {
                     this.velocity.y = -Player.moveRate
+                    this.frameRow = 2
+                }
             }
         }
         else if (this.controller.direction === 'left') {
@@ -62,9 +78,12 @@ export class Player {
                     })
                 ) {
                     this.velocity.x = 0
+                    this.frameRow = rowCache
                     break
-                } else
+                } else {
                     this.velocity.x = -Player.moveRate
+                    this.frameRow = 1
+                }
             }
         }
         else if (this.controller.direction === 'down') {
@@ -82,9 +101,12 @@ export class Player {
                     })
                 ) {
                     this.velocity.y = 0
+                    this.frameRow = rowCache
                     break
-                } else
+                } else {
                     this.velocity.y = Player.moveRate
+                    this.frameRow = 3
+                }
             }
         }
         else if (this.controller.direction === 'right') {
@@ -102,9 +124,12 @@ export class Player {
                     })
                 ) {
                     this.velocity.x = 0
+                    this.frameRow = rowCache
                     break
-                } else
+                } else {
                     this.velocity.x = Player.moveRate
+                    this.frameRow = 0
+                }
             }
         }
         boundries.forEach((boundry) => {
@@ -114,6 +139,12 @@ export class Player {
                 this.velocity.y = 0
             }
         })
+    }
+
+    #drawFrame(frameX, frameY) {
+        c.drawImage(image,
+            456 + frameX * 16, 0 + frameY * 16, 16, 16,
+            (this.position.x - Tile.size), (this.position.y - Tile.size), 16, 16);
     }
 
     update() {
