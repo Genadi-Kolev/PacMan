@@ -39,4 +39,18 @@
   Homework
   * Make the pacman to move only in allowed tiles{not walls}
   * Add ghosts to the map
-  
+
+# 22 March 2023
+  * TODO: Change game to use HTML Canvas instead of two div 'layers' `done`
+Edit:
+  * Draw map on screen based on initial level matrix
+  * TODO: 
+    * Add visuals from sprite sheet `done`
+    * Add pacman to map `done`
+Edit:
+  * Added visuals to map from spritesheet `done`
+Edit: 
+  * Propper collision `DONE!`
+  * Pacman animations restored `done`
+  * TODO:
+    * Add score pellets to map

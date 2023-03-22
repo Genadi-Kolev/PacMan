@@ -1,57 +1,44 @@
-import { Game } from './gamemap.js';
-import { game_map } from './game_maps/levels.js'
+import { Game } from "./game.js"
 
-window.onload = init;
+export const canvas = document.querySelector('canvas')
+export const c = canvas.getContext('2d')
 
-const image = new Image();
-image.src = '../Nursery/spritesheet.png'
-const canvas = document.getElementById('canvas');
-const context = canvas.getContext('2d');
+canvas.width = innerWidth
+canvas.height = innerHeight
 
-export { canvas, context, image };
+const boundries = []
+const characters = []
 
-let gameObjects = [];
-
-class GameEngine {
-
-    loopFunc = 0;
-
-    init() {
-        const game = new Game(game_map);
-        game.populateMap();
-        const objects = game.spawnCharacters();
-        gameObjects = gameObjects.concat(objects);
-
-        this.loopFunc = setInterval(this.#gameLoop, 16);
-    };
-
-    #gameLoop() {
-        gameObjects.forEach(object => {
-            object.update();
-        });
+class Engine {
+    constructor() {
+        this.game = new Game()
     }
-
-    stopGameLoop() {
-        clearInterval(this.loopFunc);
-    }
-    startGameLoop() {
-        this.loopFunc = setInterval(this.#gameLoop, 16);
-    }
-};
-
-const engine = new GameEngine();
-
-// For debugging purposses
-addEventListener('keydown', (event) => {
-    switch (event.code) {
-        case 'Escape':
-            engine.stopGameLoop();            
-            break;
     
-        case 'Backquote':
-            engine.startGameLoop();
-            break;
-    }
-},false);
+    init() {
+        this.game.createMap(boundries)
+        this.game.createPacman(characters)
 
-function init() { engine.init(); }
+        this.startGameLoop()
+    }
+
+    startGameLoop() {
+        function tick() {
+            c.clearRect(0, 0, canvas.width, canvas.height)
+
+            boundries.forEach((boundry) => {
+                boundry.draw()
+            })
+
+            characters.forEach(character => {
+                character.collisionCheck(boundries)
+                character.update()
+            })
+            requestAnimationFrame(tick)
+        }
+        requestAnimationFrame(tick)
+    }
+}
+
+const engine = new Engine()
+engine.init()
+

@@ -1,35 +1,25 @@
 export class Input {
 
-    input = {
-        x: 0,
-        y: 0
-    };
+    constructor() {
+        this.direction = ''
+    }
 
     init() {
-        document.addEventListener('keydown', (event) => {
-            if (event.defaultPrevented) {
-                return;
+        addEventListener('keypress', ({ key }) => {
+            switch (key) {
+                case 'w':
+                    this.direction = 'up'
+                    break
+                case 'a':
+                    this.direction = 'left'
+                    break
+                case 's':
+                    this.direction = 'down'
+                    break
+                case 'd':
+                    this.direction = 'right'
+                    break
             }
-            switch (event.code) {
-                case 'KeyS':
-                    this.input.x = 0;
-                    this.input.y = 1;
-                    break;
-                case 'KeyW':
-                    this.input.x = 0;
-                    this.input.y = -1;
-                    break;
-                case 'KeyA':
-                    this.input.x = -1;
-                    this.input.y = 0;
-                    break;
-                case 'KeyD':
-                    this.input.x = 1;
-                    this.input.y = 0;
-                    break;        
-            }
-            event.preventDefault();
-        }, false);
-    };
-
-};
+        })
+    }
+}
