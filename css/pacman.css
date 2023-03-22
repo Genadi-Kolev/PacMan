@@ -37,3 +37,12 @@ div.layer div {
 canvas {
     background-color: transparent;
 }
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: 170px;
+    margin-left: 200px;
+    scale: 2;
+  }

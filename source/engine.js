@@ -6,27 +6,33 @@ export const c = canvas.getContext('2d')
 canvas.width = innerWidth
 canvas.height = innerHeight
 
-let game_objects = []
+const boundries = []
+const characters = []
 
 class Engine {
+    constructor() {
+        this.game = new Game()
+    }
+    
     init() {
-        const game = new Game()
-        game.createMap()
+        this.game.createMap(boundries)
+        this.game.createPacman(characters)
 
-        const objects = game.fetchObjects()
-        game_objects = game_objects.concat(objects);
-
-        this.#gameLoop()
+        this.startGameLoop()
     }
 
-    #gameLoop() {
+    startGameLoop() {
         function tick() {
             c.clearRect(0, 0, canvas.width, canvas.height)
-    
-            game_objects.forEach((object) => {
-                object.update()
+
+            boundries.forEach((boundry) => {
+                boundry.draw()
             })
 
+            characters.forEach(character => {
+                character.collisionCheck(boundries)
+                character.update()
+            })
             requestAnimationFrame(tick)
         }
         requestAnimationFrame(tick)
@@ -34,4 +40,5 @@ class Engine {
 }
 
 const engine = new Engine()
-window.onload = function() { engine.init() }
+engine.init()
+
