@@ -1,6 +1,6 @@
-import { Character } from "./character.js";
-import { context, canvas } from "../engine.js";
-import { Input } from "../input.js";
+import { Character } from "./characterO.js";
+import { context, canvas } from "../engineO.js";
+import { Input } from "../inputO.js";
 
 export class Pacman extends Character {
 

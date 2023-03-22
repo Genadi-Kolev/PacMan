@@ -39,4 +39,7 @@
   Homework
   * Make the pacman to move only in allowed tiles{not walls}
   * Add ghosts to the map
-  
+
+# 22 March 2023
+  * TODO: Change game map to use HTML Canvas instead of two div 'layers'
+    

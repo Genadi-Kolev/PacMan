@@ -1,5 +1,5 @@
-import { Tile } from './tiles/tile.js'
-import { Pacman } from './characters/pacman.js';
+import { Tile } from './tiles/tile.js.js.js.js.js.js'
+import { Pacman } from './characters/pacmanO.js';
 
 export class Game {
 

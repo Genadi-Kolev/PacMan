@@ -1,4 +1,4 @@
-import { Game } from './gamemap.js';
+import { Game } from './gamemapO.js';
 import { game_map } from './game_maps/levels.js'
 
 window.onload = init;
