@@ -4,34 +4,14 @@ body {
     text-align: center;
 }
 
-p {
-    padding: 0px;
-    margin: 10px, 0px;
+body div {
+    color: white
 }
 
 .game-map {
     position: absolute;
     scale: 2;
     left: 32%;
-}
-
-div.layer,
-div.layer div {
-    position: absolute;
-}
-
-.pacman {
-    position: relative;
-}
-
-.hidden {
-    display: none;
-}
-
-.tile {
-    position: relative;
-    clip-path: inset(0px 672px 240px 0px);
-                   /*up  left  down right  */
 }
 
 canvas {
@@ -45,4 +25,4 @@ canvas {
     margin-top: 170px;
     margin-left: 200px;
     scale: 2;
-  }
+}

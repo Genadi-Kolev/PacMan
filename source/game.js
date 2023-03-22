@@ -2,6 +2,7 @@ import { game_map } from "./level.js";
 import { Tile } from "./tile.js";
 import { Player } from "./characters/pacman.js"
 import { Input } from "./input.js"
+import { Pellet } from "./pellet.js";
 
 
 export const image = new Image();
@@ -9,8 +10,9 @@ image.src = '../Nursery/spritesheet.png'
 
 export class Game {
     static scale = 1
+    player = undefined
 
-    createMap(boundries) {
+    createMap(boundries, pellets) {
         game_map.forEach((row, i) => {
             row.forEach((num, j) => {
                 switch (num) {
@@ -21,8 +23,17 @@ export class Game {
                                     x: Tile.size * j * Game.scale,
                                     y: Tile.size * i * Game.scale
                                 }
-                            })
-                        )
+                            }))
+                        break;
+                    case 2:
+                        pellets.push(
+                            new Pellet({
+                                position: {
+                                    x: (Tile.size * j) * Game.scale,
+                                    y: (Tile.size * i) * Game.scale
+                                },
+                                player: this.player
+                            }))
                         break;
                 }
             })
@@ -41,6 +52,7 @@ export class Game {
             },
             controller: new Input()
         })
+        this.player = player
         charactersArr.push(player)
     }
 }
