@@ -1,11 +1,11 @@
 body {
     background-color: black;
-    font-family: Calibri;
+    font-family: Pixeboy;
     text-align: center;
 }
 
 body div {
-    color: white
+    color: white;
 }
 
 .game-map {
@@ -16,13 +16,12 @@ body div {
 
 canvas {
     background-color: transparent;
+    border: 3px #033aaf double;
 }
 
 .centered {
     position: fixed;
-    top: 50%;
-    left: 50%;
-    margin-top: 170px;
-    margin-left: 200px;
-    scale: 2;
+    top: 30%;
+    left: 45%;
+    scale: 2.5;
 }

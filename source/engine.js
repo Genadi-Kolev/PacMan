@@ -1,4 +1,5 @@
 import { Game } from "./game.js"
+import { Tile } from "./tile.js"
 
 export const canvas = document.querySelector('canvas')
 export const c = canvas.getContext('2d')
@@ -6,8 +7,8 @@ export const c = canvas.getContext('2d')
 const text_score = document.getElementById('score')
 const text = document.getElementById('score_text')
 
-canvas.width = innerWidth
-canvas.height = innerHeight
+canvas.width = 28 * Tile.size
+canvas.height = 31 * Tile.size
 
 const walls = []
 const characters = []
@@ -18,12 +19,16 @@ let requestId = undefined
 
 class Engine {
     constructor() {
-        this.game = new Game()
+        this.game = new Game({
+            walls: walls,
+            characters: characters,
+            pellets: pellets
+        })
     }
 
     init() {
-        this.game.createPacman(characters)
-        this.game.createMap(walls, pellets)
+        this.game.createPacman()
+        this.game.createMap()
 
         this.startGameLoop()
     }
@@ -69,7 +74,6 @@ addEventListener('keypress', ({ key }) => {
     if (key != '`')
         return
 
-    console.log(requestId)
     if (!requestId) {
         engine.startGameLoop()
     } else {

@@ -1,16 +1,15 @@
 import { c } from "./engine.js"
 import { Tile } from "./tile.js"
-import { Game } from "./game.js"
 
 export class Pellet {
     constructor({ position, player }) {
         this.position = {
-            x: (position.x + Tile.size / 2) * Game.scale,
-            y: (position.y + Tile.size / 2) * Game.scale
+            x: position.x + Tile.size / 2,
+            y: position.y + Tile.size / 2
         }
         this.player = player
 
-        this.radius = 1 * Game.scale
+        this.radius = 1
     }
 
     draw() {

@@ -1,7 +1,6 @@
 import { game_map } from "./level.js";
 import { Tile } from "./tile.js";
 import { Player } from "./characters/pacman.js"
-import { Input } from "./input.js"
 import { Pellet } from "./pellet.js";
 
 
@@ -9,28 +8,33 @@ export const image = new Image();
 image.src = '../Nursery/spritesheet.png'
 
 export class Game {
-    static scale = 1
     player = undefined
 
-    createMap(boundries, pellets) {
+    constructor({walls, pellets, characters}) {
+        this.walls = walls
+        this.pellets = pellets
+        this.characters = characters
+    }
+
+    createMap() {
         game_map.forEach((row, i) => {
             row.forEach((num, j) => {
                 switch (num) {
                     case 1:
-                        boundries.push(
+                        this.walls.push(
                             new Tile({
                                 position: {
-                                    x: Tile.size * j * Game.scale,
-                                    y: Tile.size * i * Game.scale
+                                    x: Tile.size * j,
+                                    y: Tile.size * i
                                 }
                             }))
                         break;
                     case 2:
-                        pellets.push(
+                        this.pellets.push(
                             new Pellet({
                                 position: {
-                                    x: (Tile.size * j) * Game.scale,
-                                    y: (Tile.size * i) * Game.scale
+                                    x: Tile.size * j,
+                                    y: Tile.size * i
                                 },
                                 player: this.player
                             }))
@@ -40,7 +44,7 @@ export class Game {
         })
     }
 
-    createPacman(charactersArr) {
+    createPacman() {
         const player = new Player({
             position: {
                 x: 13.5,
@@ -49,10 +53,9 @@ export class Game {
             velocity: {
                 x: 0,
                 y: 0
-            },
-            controller: new Input()
+            }
         })
         this.player = player
-        charactersArr.push(player)
+        this.characters.push(player)
     }
 }

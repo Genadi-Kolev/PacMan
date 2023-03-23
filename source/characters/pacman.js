@@ -1,22 +1,20 @@
-import { c } from "../engine.js"
-import { Game, image } from "../game.js"
+import { Input } from "../input.js"
 import { Tile } from "../tile.js"
+import { Character, circleCollidesWithRectangle } from "./character.js"
 
-export class Player {
-    static moveRate = 1
-
+export class Player extends Character {
     animCycleLoop = [0, 1]
     frameRow = 0
 
-    constructor({ position, velocity, controller }) {
-        Player.moveRate *= Game.scale
-        this.position = {
-            x: (position.x * Tile.size + Tile.size / 2) * Game.scale,
-            y: (position.y * Tile.size + Tile.size / 2) * Game.scale
-        }
-        this.velocity = velocity
-        this.controller = controller
-        this.radius = 3 * Game.scale
+    constructor({ position, velocity }) {
+        super({
+            position: position,
+            velocity: velocity,
+            controller: new Input()
+        })
+        
+        this.moveRate = 1
+        this.radius = 3
 
         this.controller.init()
         this._frameCount = 10
@@ -25,10 +23,10 @@ export class Player {
 
     draw() {
         const column = this.animCycleLoop[this._currentLoopIndex];
-        this.#drawFrame(column, this.frameRow);
-        
+        this._drawFrame(column, this.frameRow);
+
         this._frameCount++;
-        if (this._frameCount < 6)
+        if (this._frameCount < 9)
             return;
         this._frameCount = 0;
 
@@ -49,7 +47,7 @@ export class Player {
                         circle: {
                             ...this, velocity: {
                                 x: 0,
-                                y: -Player.moveRate
+                                y: -this.moveRate
                             }
                         }
                     })
@@ -58,7 +56,7 @@ export class Player {
                     this.frameRow = rowCache
                     break
                 } else {
-                    this.velocity.y = -Player.moveRate
+                    this.velocity.y = -this.moveRate
                     this.frameRow = 2
                 }
             }
@@ -71,7 +69,7 @@ export class Player {
                         rectangle: boundry,
                         circle: {
                             ...this, velocity: {
-                                x: -Player.moveRate,
+                                x: -this.moveRate,
                                 y: 0
                             }
                         }
@@ -81,7 +79,7 @@ export class Player {
                     this.frameRow = rowCache
                     break
                 } else {
-                    this.velocity.x = -Player.moveRate
+                    this.velocity.x = -this.moveRate
                     this.frameRow = 1
                 }
             }
@@ -95,7 +93,7 @@ export class Player {
                         circle: {
                             ...this, velocity: {
                                 x: 0,
-                                y: Player.moveRate
+                                y: this.moveRate
                             }
                         }
                     })
@@ -104,7 +102,7 @@ export class Player {
                     this.frameRow = rowCache
                     break
                 } else {
-                    this.velocity.y = Player.moveRate
+                    this.velocity.y = this.moveRate
                     this.frameRow = 3
                 }
             }
@@ -117,7 +115,7 @@ export class Player {
                         rectangle: boundry,
                         circle: {
                             ...this, velocity: {
-                                x: Player.moveRate,
+                                x: this.moveRate,
                                 y: 0
                             }
                         }
@@ -127,24 +125,17 @@ export class Player {
                     this.frameRow = rowCache
                     break
                 } else {
-                    this.velocity.x = Player.moveRate
+                    this.velocity.x = this.moveRate
                     this.frameRow = 0
                 }
             }
         }
         boundries.forEach((boundry) => {
-            boundry.draw()
             if (circleCollidesWithRectangle({ rectangle: boundry, circle: this })) {
                 this.velocity.x = 0
                 this.velocity.y = 0
             }
         })
-    }
-
-    #drawFrame(frameX, frameY) {
-        c.drawImage(image,
-            456 + frameX * 16, 0 + frameY * 16, 16, 16,
-            (this.position.x - Tile.size), (this.position.y - Tile.size), 16, 16);
     }
 
     update() {
@@ -158,14 +149,4 @@ export class Player {
         else if (this.position.x > 28 * Tile.size)
             this.position.x = 0
     }
-}
-
-
-function circleCollidesWithRectangle({ circle, rectangle }) {
-    return (
-        circle.position.y - circle.radius + circle.velocity.y <= rectangle.position.y + rectangle.height &&
-        circle.position.y + circle.radius + circle.velocity.y >= rectangle.position.y &&
-        circle.position.x + circle.radius + circle.velocity.x >= rectangle.position.x &&
-        circle.position.x - circle.radius + circle.velocity.x <= rectangle.position.x + rectangle.width
-    )
 }

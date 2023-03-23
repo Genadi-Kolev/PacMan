@@ -1,13 +1,13 @@
 import { c } from "./engine.js"
-import { Game, image } from "./game.js"
+import { image } from "./game.js"
 
 export class Tile {
     static size = 8
 
     constructor({ position }) {
         this.position = position
-        this.width = Tile.size * Game.scale
-        this.height = Tile.size * Game.scale
+        this.width = Tile.size
+        this.height = Tile.size
     }
 
     draw() {
