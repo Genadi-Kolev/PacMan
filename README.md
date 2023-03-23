@@ -60,3 +60,12 @@
     
 Overall, whole day involved changes to the codebase, ranging from minor refactoring to major redesign. Master branch up to date 
 
+# 23 March 2023
+Homework
+  * Make the pacman to teleport to the other exit when going out from one of the exits. `done`
+  * Add ghosts to the map 
+  * Make them move in randoom directions
+<ins>Edit</ins>
+  * Pacman doesn't exit map when going through middle corridors
+  * TODO:
+    * Add ghosts

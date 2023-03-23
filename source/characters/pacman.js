@@ -5,7 +5,7 @@ import { Tile } from "../tile.js"
 export class Player {
     static moveRate = 1
 
-    animCycleLoop = [0, 1, 0]
+    animCycleLoop = [0, 1]
     frameRow = 0
 
     constructor({ position, velocity, controller }) {
@@ -149,8 +149,14 @@ export class Player {
 
     update() {
         this.draw()
+
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
+
+        if (this.position.x < 0)
+            this.position.x = 28 * Tile.size
+        else if (this.position.x > 28 * Tile.size)
+            this.position.x = 0
     }
 }
 
