@@ -11,6 +11,9 @@ export class Character {
         }
         this.velocity = velocity
         this.controller = controller
+
+        this._frameCount = 10
+        this._currentLoopIndex = 0
     }
 
     _drawFrame(frameX, frameY) {

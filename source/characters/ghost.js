@@ -1,19 +1,21 @@
-import { Input } from "../controllers/input.js"
+import { Bot } from "../controllers/bot.js"
 import { Tile } from "../tile.js"
 import { Character, circleCollidesWithRectangle } from "./character.js"
 
-export class Player extends Character {
-    animCycleLoop = [0, 1]
+export class Ghost extends Character {
+    moveRate = 1
+
+    animCycleLoop = [0,1]
     frameRow = 0
 
-    constructor({ position, velocity }) {
+    constructor({ position, velocity }, type = 'red') {
         super({
             position: position,
             velocity: velocity,
-            controller: new Input()
+            controller: new Bot()
         })
         
-        this.moveRate = 1
+        this.type = type
         this.radius = 3
 
         this.controller.init()
@@ -21,7 +23,7 @@ export class Player extends Character {
 
     draw() {
         const column = this.animCycleLoop[this._currentLoopIndex];
-        this._drawFrame(column, this.frameRow);
+        this._drawFrame(column, 4);
 
         this._frameCount++;
         if (this._frameCount < 9)
@@ -35,7 +37,6 @@ export class Player extends Character {
     }
 
     collisionCheck(boundries) {
-        const rowCache = this.frameRow
         if (this.controller.direction === 'up') {
             for (let i = 0; i < boundries.length; i++) {
                 const boundry = boundries[i];
@@ -51,11 +52,9 @@ export class Player extends Character {
                     })
                 ) {
                     this.velocity.y = 0
-                    this.frameRow = rowCache
                     break
                 } else {
                     this.velocity.y = -this.moveRate
-                    this.frameRow = 2
                 }
             }
         }
@@ -74,11 +73,9 @@ export class Player extends Character {
                     })
                 ) {
                     this.velocity.x = 0
-                    this.frameRow = rowCache
                     break
                 } else {
                     this.velocity.x = -this.moveRate
-                    this.frameRow = 1
                 }
             }
         }
@@ -97,11 +94,9 @@ export class Player extends Character {
                     })
                 ) {
                     this.velocity.y = 0
-                    this.frameRow = rowCache
                     break
                 } else {
                     this.velocity.y = this.moveRate
-                    this.frameRow = 3
                 }
             }
         }
@@ -120,11 +115,9 @@ export class Player extends Character {
                     })
                 ) {
                     this.velocity.x = 0
-                    this.frameRow = rowCache
                     break
                 } else {
                     this.velocity.x = this.moveRate
-                    this.frameRow = 0
                 }
             }
         }

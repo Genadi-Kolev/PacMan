@@ -28,6 +28,7 @@ class Engine {
 
     init() {
         this.game.createPacman()
+        this.game.createGhosts()
         this.game.createMap()
 
         this.startGameLoop()
@@ -39,11 +40,6 @@ class Engine {
 
             walls.forEach((wall) => {
                 wall.draw()
-            })
-
-            characters.forEach(character => {
-                character.collisionCheck(walls)
-                character.update()
             })
 
             for (let i = pellets.length - 1; i > 0; i--) {
@@ -59,6 +55,11 @@ class Engine {
                 text.innerHTML = 'You have Won!!'
                 requestId = undefined
             }
+
+            characters.forEach(character => {
+                character.collisionCheck(walls)
+                character.update()
+            })
 
             if (requestId)
                 requestId = requestAnimationFrame(tick)

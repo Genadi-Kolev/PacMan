@@ -2,6 +2,7 @@ import { game_map } from "./level.js";
 import { Tile } from "./tile.js";
 import { Player } from "./characters/pacman.js"
 import { Pellet } from "./pellet.js";
+import { Ghost } from "./characters/ghost.js";
 
 
 export const image = new Image();
@@ -57,5 +58,20 @@ export class Game {
         })
         this.player = player
         this.characters.push(player)
+    }
+
+    createGhosts() {
+        const ghost = new Ghost({
+            position: {
+                x: 5,
+                y: 5
+            },
+            velocity: {
+                x: 0,
+                y: 0
+            },
+            type: 'red'
+        })
+        this.characters.push(ghost)
     }
 }

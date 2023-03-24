@@ -68,4 +68,9 @@ Homework
 <ins>Edit</ins>
   * Pacman doesn't exit map when going through middle corridors
   * TODO:
-    * Add ghosts
+    * Add ghosts `done`
+
+# 24 March 2023
+Added ghosts to game, alongside base Character class
+  * TODO:
+    * Add bot controller to ghost
