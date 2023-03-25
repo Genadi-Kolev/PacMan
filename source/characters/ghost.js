@@ -4,7 +4,6 @@ import { Character, circleCollidesWithRectangle } from "./character.js"
 
 export class Ghost extends Character {
     #moveRate = 1
-    #collisionsCache = []
 
     #animCycleLoop = [0, 1]
     #frameRow = 0
@@ -48,7 +47,6 @@ export class Ghost extends Character {
     }
 
     collisionCheck(boundries) {
-        const collisions = []
         boundries.forEach((boundry) => {
             if (
                 circleCollidesWithRectangle({
@@ -59,9 +57,9 @@ export class Ghost extends Character {
                             y: 0
                         }
                     }
-                }) && !collisions.includes('right')
+                })
             ) {
-                collisions.push('right')
+                this.controller._addCollision('right')
             }
 
             if (
@@ -73,9 +71,9 @@ export class Ghost extends Character {
                             y: 0
                         }
                     }
-                }) && !collisions.includes('left')
+                })
             ) {
-                collisions.push('left')
+                this.controller._addCollision('left')
             }
 
             if (
@@ -87,9 +85,9 @@ export class Ghost extends Character {
                             y: this.#moveRate
                         }
                     }
-                }) && !collisions.includes('down')
+                })
             ) {
-                collisions.push('down')
+                this.controller._addCollision('down')
             }
 
             if (
@@ -101,60 +99,12 @@ export class Ghost extends Character {
                             y: -this.#moveRate
                         }
                     }
-                }) && !collisions.includes('up')
+                })
             ) {
-                collisions.push('up')
+                this.controller._addCollision('up')
             }
         })
 
-        if (collisions.length > this.#collisionsCache.length)
-            this.#collisionsCache = collisions
-
-        if (JSON.stringify(collisions) !== JSON.stringify(this.#collisionsCache)) {
-            if (this.velocity.x > 0)
-                this.#collisionsCache.push('right')
-            else if (this.velocity.x < 0)
-                this.#collisionsCache.push('left')
-            else if (this.velocity.y > 0)
-                this.#collisionsCache.push('down')
-            else if (this.velocity.y < 0)
-                this.#collisionsCache.push('up')
-
-            const pathways = this.#collisionsCache.filter(obstacle => {
-                return !collisions.includes(obstacle)
-            })
-
-            this.controller.direction = pathways[getRandomIntIn(0, pathways.length - 1)]
-
-            switch (this.controller.direction) {
-                case 'right':
-                    this.velocity.x = this.#moveRate
-                    this.velocity.y = 0
-                    break;
-                case 'left':
-                    this.velocity.x = -this.#moveRate
-                    this.velocity.y = 0
-                    break;
-                case 'down':
-                    this.velocity.x = 0
-                    this.velocity.y = this.#moveRate
-                    break;
-                case 'up':
-                    this.velocity.x = 0
-                    this.velocity.y = -this.#moveRate
-                    break;
-            }
-
-            this.#collisionsCache = []
-        }
-
+        this.controller._pickDirection(this.velocity, this.#moveRate)
     }
-}
-
-function getRandomIntIn(min, max) {
-    min = Math.ceil(min)
-    max = Math.floor(max)
-
-    const result = Math.floor(Math.random() * (max - min + 1) + min)
-    return result
 }

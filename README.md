@@ -73,4 +73,11 @@ Homework
 # 24 March 2023
 Added ghosts to game, alongside base Character class
   * TODO:
-    * Add bot controller to ghost
+    * Add bot controller to ghost `done`
+
+# 25 March 2023
+Ghost controller added
+  * TODO: 
+    * 4-way animations for ghost
+    * Ghost kills player upon touch
+    * All four ghosts

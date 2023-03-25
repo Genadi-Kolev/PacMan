@@ -34,6 +34,18 @@ export class Player extends Character {
         }
     }
 
+    update() {
+        this.draw()
+
+        this.position.x += this.velocity.x
+        this.position.y += this.velocity.y
+
+        if (this.position.x < 0)
+            this.position.x = 28 * Tile.size
+        else if (this.position.x > 28 * Tile.size)
+            this.position.x = 0
+    }
+
     collisionCheck(boundries) {
         const rowCache = this.frameRow
         if (this.controller.direction === 'up') {
@@ -134,17 +146,5 @@ export class Player extends Character {
                 this.velocity.y = 0
             }
         })
-    }
-
-    update() {
-        this.draw()
-
-        this.position.x += this.velocity.x
-        this.position.y += this.velocity.y
-
-        if (this.position.x < 0)
-            this.position.x = 28 * Tile.size
-        else if (this.position.x > 28 * Tile.size)
-            this.position.x = 0
     }
 }
