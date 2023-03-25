@@ -6,7 +6,7 @@ import { Ghost } from "./characters/ghost.js";
 
 
 export const image = new Image();
-image.src = '../Nursery/spritesheet.png'
+image.src = '../Nursery/spritesheet_trans.png'
 
 export class Game {
     player = undefined
@@ -67,7 +67,7 @@ export class Game {
                 y: 5
             },
             velocity: {
-                x: 0,
+                x: 1,
                 y: 0
             },
             type: 'red'
