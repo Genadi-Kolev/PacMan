@@ -78,6 +78,7 @@ Added ghosts to game, alongside base Character class
 # 25 March 2023
 Ghost controller added
   * TODO: 
-    * 4-way animations for ghost
+    * 4-way animations for ghost `done`
     * Ghost kills player upon touch
-    * All four ghosts
+    * All four ghosts `done` 
+  * <ins>Edit</ins> 4 4-way animated ghosts *yay*

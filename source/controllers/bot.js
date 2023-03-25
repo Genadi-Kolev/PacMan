@@ -56,6 +56,20 @@ export class Bot {
         this.#collisions = []
     }
 
+    _animFrameIncr() {
+        switch (this.direction) {
+            case 'up':
+                return 4
+            case 'down':
+                return 6
+            case 'left':
+                return 2
+            case 'right':
+                return 0
+            default:
+                return 0
+        }
+    }
 }
 
 function getRandomIntIn(min, max) {

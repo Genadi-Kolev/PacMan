@@ -61,7 +61,7 @@ export class Game {
     }
 
     createGhosts() {
-        const ghost = new Ghost({
+        const ghost_pink = new Ghost({
             position: {
                 x: 5,
                 y: 5
@@ -70,8 +70,48 @@ export class Game {
                 x: 1,
                 y: 0
             },
+            type: 'pink'
+        })
+        this.characters.push(ghost_pink)
+
+
+        const ghost_Blue = new Ghost({
+            position: {
+                x: 22,
+                y: 26
+            },
+            velocity: {
+                x: 1,
+                y: 0
+            },
+            type: 'blue'
+        })
+        this.characters.push(ghost_Blue)
+
+        const ghost_Orange = new Ghost({
+            position: {
+                x: 5,
+                y: 26
+            },
+            velocity: {
+                x: 1,
+                y: 0
+            },
+            type: 'orange'
+        })
+        this.characters.push(ghost_Orange)
+
+        const ghost_Red = new Ghost({
+            position: {
+                x: 23,
+                y: 5
+            },
+            velocity: {
+                x: 1,
+                y: 0
+            },
             type: 'red'
         })
-        this.characters.push(ghost)
+        this.characters.push(ghost_Red)
     }
 }
