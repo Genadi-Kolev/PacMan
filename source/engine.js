@@ -17,17 +17,23 @@ const pellets = []
 let score = 0
 let requestId = undefined
 
+export function stopLoop() {
+    requestId = undefined
+    text.innerHTML = 'You have lost :('
+}
+
 class Engine {
     constructor() {
         this.game = new Game({
             walls: walls,
             characters: characters,
-            pellets: pellets
+            pellets: pellets,
         })
     }
 
     init() {
         this.game.createPacman()
+        this.game.createGhosts()
         this.game.createMap()
 
         this.startGameLoop()
@@ -37,20 +43,17 @@ class Engine {
         function tick() {
             c.clearRect(0, 0, canvas.width, canvas.height)
 
+            //  Update walls
             walls.forEach((wall) => {
                 wall.draw()
             })
 
-            characters.forEach(character => {
-                character.collisionCheck(walls)
-                character.update()
-            })
-
-            for (let i = pellets.length - 1; i > 0; i--) {
+            //  Update pellets
+            for (let i = pellets.length - 1; i >= 0; i--) {
                 const pellet = pellets[i];
                 pellet.draw()
 
-                if (pellet.shouldConsume()) {
+                if (pellet.shouldConsume(characters)) {
                     pellets.splice(i, 1)
                     text_score.innerHTML = score++ * 10
                 }
@@ -58,6 +61,17 @@ class Engine {
             if (pellets.length - 1 == 0) {
                 text.innerHTML = 'You have Won!!'
                 requestId = undefined
+            }
+
+            //  Update characters
+            for (let i = characters.length - 1; i >= 0; i--) {
+                const character = characters[i]
+                character.collisionCheck(walls)
+                character.update()
+
+                if (character.hasOwnProperty('dead') && character.dead) {
+                    characters.splice(i, 1)
+                }
             }
 
             if (requestId)

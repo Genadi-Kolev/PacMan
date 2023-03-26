@@ -2,10 +2,12 @@ import { game_map } from "./level.js";
 import { Tile } from "./tile.js";
 import { Player } from "./characters/pacman.js"
 import { Pellet } from "./pellet.js";
+import { ghostFactory } from "./characters/ghostFactory.js";
+import { PowerPill } from "./powerPill.js";
 
 
 export const image = new Image();
-image.src = '../Nursery/spritesheet.png'
+image.src = '../Nursery/spritesheet_trans.png'
 
 export class Game {
     player = undefined
@@ -39,6 +41,16 @@ export class Game {
                                 player: this.player
                             }))
                         break;
+                    case 3:
+                        this.pellets.push(
+                            new PowerPill({
+                                position: {
+                                    x: Tile.size * j,
+                                    y: Tile.size * i
+                                },
+                                player: this.player
+                            }))
+                        break;
                 }
             })
         })
@@ -57,5 +69,27 @@ export class Game {
         })
         this.player = player
         this.characters.push(player)
+    }
+
+    createGhosts() {
+        const ghost_pink = ghostFactory({
+            type: 'pink', player: this.player
+        })
+        this.characters.push(ghost_pink)
+
+        const ghost_blue = ghostFactory({
+            type: 'blue', player: this.player
+        })
+        this.characters.push(ghost_blue)
+
+        const ghost_orange = ghostFactory({
+            type: 'orange', player: this.player
+        })
+        this.characters.push(ghost_orange)
+
+        const ghost_Red = ghostFactory({
+            type: 'red', player: this.player
+        })
+        this.characters.push(ghost_Red)
     }
 }

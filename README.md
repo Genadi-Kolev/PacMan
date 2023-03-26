@@ -68,4 +68,25 @@ Homework
 <ins>Edit</ins>
   * Pacman doesn't exit map when going through middle corridors
   * TODO:
-    * Add ghosts
+    * Add ghosts `done`
+
+# 24 March 2023
+Added ghosts to game, alongside base Character class
+  * TODO:
+    * Add bot controller to ghost `done`
+
+# 25 March 2023
+Ghost controller added
+  * TODO: 
+    * 4-way animations for ghost `done`
+    * Ghost kills player upon touch `done`
+    * All four ghosts `done` 
+  * <ins>Edit</ins> 4 4-way animated ghosts *yay*
+
+# 26 March 2023
+Upon touching the player, ghosts will 'kill him', i.e. stop the game loop indefinitely, i.e. 'game over'
+  * TODO:
+    * Add power pills `done`
+  * <ins>Edit</ins> Added power pills: after pacman eats one, the ghosts will be scared for 6s and can be eaten by pacman
+    * Initial game functionality done?
+    

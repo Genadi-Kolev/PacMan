@@ -4,7 +4,7 @@ export class Input {
         this.direction = ''
     }
 
-    init() {
+    _init() {
         addEventListener('keypress', ({ key }) => {
             switch (key) {
                 case 'w':

@@ -11,12 +11,25 @@ export class Character {
         }
         this.velocity = velocity
         this.controller = controller
+
+        this._frameCount = 10
+        this._currentLoopIndex = 0
     }
 
     _drawFrame(frameX, frameY) {
         c.drawImage(image,
             456 + frameX * 16, 0 + frameY * 16, 16, 16,
             (this.position.x - Tile.size), (this.position.y - Tile.size), 16, 16);
+    }
+
+    _move() {
+        this.position.x += this.velocity.x
+        this.position.y += this.velocity.y
+
+        if (this.position.x < 0)
+            this.position.x = 28 * Tile.size
+        else if (this.position.x > 28 * Tile.size)
+            this.position.x = 0
     }
 }
 
