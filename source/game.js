@@ -3,6 +3,7 @@ import { Tile } from "./tile.js";
 import { Player } from "./characters/pacman.js"
 import { Pellet } from "./pellet.js";
 import { ghostFactory } from "./characters/ghostFactory.js";
+import { PowerPill } from "./powerPill.js";
 
 
 export const image = new Image();
@@ -33,6 +34,16 @@ export class Game {
                     case 2:
                         this.pellets.push(
                             new Pellet({
+                                position: {
+                                    x: Tile.size * j,
+                                    y: Tile.size * i
+                                },
+                                player: this.player
+                            }))
+                        break;
+                    case 3:
+                        this.pellets.push(
+                            new PowerPill({
                                 position: {
                                     x: Tile.size * j,
                                     y: Tile.size * i

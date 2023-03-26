@@ -43,10 +43,12 @@ class Engine {
         function tick() {
             c.clearRect(0, 0, canvas.width, canvas.height)
 
+            //  Update walls
             walls.forEach((wall) => {
                 wall.draw()
             })
 
+            //  Update pellets
             for (let i = pellets.length - 1; i > 0; i--) {
                 const pellet = pellets[i];
                 pellet.draw()
@@ -61,6 +63,7 @@ class Engine {
                 requestId = undefined
             }
 
+            //  Update characters
             characters.forEach(character => {
                 character.collisionCheck(walls)
                 character.update()

@@ -8,6 +8,8 @@ export class Ghost extends Character {
     #animCycleLoop = [0, 1]
     #frameRow = 0
 
+    scared = false
+
     constructor({ position, velocity, type, player }) {
         super({
             position: position,
@@ -58,7 +60,11 @@ export class Ghost extends Character {
         this._move()
 
         if (this.#isTouchingPlayer()) {
-            stopLoop()
+            if (!this.scared)
+                stopLoop()
+            else {
+
+            }
         }
     }
 
