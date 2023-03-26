@@ -86,4 +86,7 @@ Ghost controller added
 # 26 March 2023
 Upon touching the player, ghosts will 'kill him', i.e. stop the game loop indefinitely, i.e. 'game over'
   * TODO:
-    * Add power pills
+    * Add power pills `done`
+  * <ins>Edit</ins> Added power pills: after pacman eats one, the ghosts will be scared for 6s and can be eaten by pacman
+    * Initial game functionality done?
+    

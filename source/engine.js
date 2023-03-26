@@ -27,7 +27,7 @@ class Engine {
         this.game = new Game({
             walls: walls,
             characters: characters,
-            pellets: pellets
+            pellets: pellets,
         })
     }
 
@@ -49,11 +49,11 @@ class Engine {
             })
 
             //  Update pellets
-            for (let i = pellets.length - 1; i > 0; i--) {
+            for (let i = pellets.length - 1; i >= 0; i--) {
                 const pellet = pellets[i];
                 pellet.draw()
 
-                if (pellet.shouldConsume()) {
+                if (pellet.shouldConsume(characters)) {
                     pellets.splice(i, 1)
                     text_score.innerHTML = score++ * 10
                 }
@@ -64,10 +64,15 @@ class Engine {
             }
 
             //  Update characters
-            characters.forEach(character => {
+            for (let i = characters.length - 1; i >= 0; i--) {
+                const character = characters[i]
                 character.collisionCheck(walls)
                 character.update()
-            })
+
+                if (character.hasOwnProperty('dead') && character.dead) {
+                    characters.splice(i, 1)
+                }
+            }
 
             if (requestId)
                 requestId = requestAnimationFrame(tick)

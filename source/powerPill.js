@@ -20,12 +20,16 @@ export class PowerPill {
         c.closePath()
     }
 
-    shouldConsume() {
+    shouldConsume(characters) {
         const a = (this.player.position.x - this.position.x) ** 2
         const b = (this.player.position.y - this.position.y) ** 2
 
         const result = Math.sqrt(a + b) <= this.player.radius + this.radius
         if (result) {
+            characters.forEach(character => {
+                if (character.hasOwnProperty('dead'))
+                    character.setScared()
+            })
             return true
         }
         else

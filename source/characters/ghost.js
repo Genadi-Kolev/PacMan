@@ -8,7 +8,12 @@ export class Ghost extends Character {
     #animCycleLoop = [0, 1]
     #frameRow = 0
 
-    scared = false
+    #scared = false
+    dead = false
+    setScared() {
+        this.#scared = true
+        setTimeout(() => { this.#scared = false }, 6000)
+    }
 
     constructor({ position, velocity, type, player }) {
         super({
@@ -42,7 +47,10 @@ export class Ghost extends Character {
     draw() {
         const column = this.#animCycleLoop[this._currentLoopIndex];
         const increment = this.controller._animFrameIncr()
-        this._drawFrame(column + increment, this.#frameRow);
+        if (this.#scared)
+            this._drawFrame(column + 8, 4)
+        else
+            this._drawFrame(column + increment, this.#frameRow);
 
         this._frameCount++;
         if (this._frameCount < 9)
@@ -60,10 +68,10 @@ export class Ghost extends Character {
         this._move()
 
         if (this.#isTouchingPlayer()) {
-            if (!this.scared)
+            if (!this.#scared)
                 stopLoop()
             else {
-
+                this.dead = true
             }
         }
     }
