@@ -17,6 +17,11 @@ const pellets = []
 let score = 0
 let requestId = undefined
 
+export function stopLoop() {
+    requestId = undefined
+    text.innerHTML = 'You have lost :('
+}
+
 class Engine {
     constructor() {
         this.game = new Game({

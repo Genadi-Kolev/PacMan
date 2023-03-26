@@ -1,5 +1,5 @@
 import { Bot } from "../controllers/bot.js"
-import { Tile } from "../tile.js"
+import { stopLoop } from "../engine.js"
 import { Character, circleCollidesWithRectangle } from "./character.js"
 
 export class Ghost extends Character {
@@ -8,13 +8,14 @@ export class Ghost extends Character {
     #animCycleLoop = [0, 1]
     #frameRow = 0
 
-    constructor({ position, velocity, type }) {
+    constructor({ position, velocity, type, player }) {
         super({
             position: position,
             velocity: velocity,
             controller: new Bot()
         })
 
+        this.player = player
         this.radius = 3
 
         switch (type) {
@@ -54,15 +55,20 @@ export class Ghost extends Character {
 
     update() {
         this.draw()
+        this._move()
 
-        this.position.x += this.velocity.x
-        this.position.y += this.velocity.y
-
-        if (this.position.x < 0)
-            this.position.x = 28 * Tile.size
-        else if (this.position.x > 28 * Tile.size)
-            this.position.x = 0
+        if (this.#isTouchingPlayer()) {
+            stopLoop()
+        }
     }
+
+    #isTouchingPlayer() {
+        const a = (this.position.x - this.player.position.x) ** 2
+        const b = (this.position.y - this.player.position.y) ** 2
+
+        return Math.sqrt(a + b) <= (this.radius + this.player.radius) * 1.4
+    }
+
 
     collisionCheck(boundries) {
         boundries.forEach((boundry) => {

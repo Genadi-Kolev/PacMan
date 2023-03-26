@@ -21,6 +21,16 @@ export class Character {
             456 + frameX * 16, 0 + frameY * 16, 16, 16,
             (this.position.x - Tile.size), (this.position.y - Tile.size), 16, 16);
     }
+
+    _move() {
+        this.position.x += this.velocity.x
+        this.position.y += this.velocity.y
+
+        if (this.position.x < 0)
+            this.position.x = 28 * Tile.size
+        else if (this.position.x > 28 * Tile.size)
+            this.position.x = 0
+    }
 }
 
 export function circleCollidesWithRectangle({ circle, rectangle }) {

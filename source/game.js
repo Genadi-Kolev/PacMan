@@ -2,7 +2,7 @@ import { game_map } from "./level.js";
 import { Tile } from "./tile.js";
 import { Player } from "./characters/pacman.js"
 import { Pellet } from "./pellet.js";
-import { Ghost } from "./characters/ghost.js";
+import { ghostFactory } from "./characters/ghostFactory.js";
 
 
 export const image = new Image();
@@ -61,56 +61,23 @@ export class Game {
     }
 
     createGhosts() {
-        const ghost_pink = new Ghost({
-            position: {
-                x: 5,
-                y: 5
-            },
-            velocity: {
-                x: 1,
-                y: 0
-            },
-            type: 'pink'
+        const ghost_pink = ghostFactory({
+            type: 'pink', player: this.player
         })
         this.characters.push(ghost_pink)
 
-
-        const ghost_Blue = new Ghost({
-            position: {
-                x: 22,
-                y: 26
-            },
-            velocity: {
-                x: 1,
-                y: 0
-            },
-            type: 'blue'
+        const ghost_blue = ghostFactory({
+            type: 'blue', player: this.player
         })
-        this.characters.push(ghost_Blue)
+        this.characters.push(ghost_blue)
 
-        const ghost_Orange = new Ghost({
-            position: {
-                x: 5,
-                y: 26
-            },
-            velocity: {
-                x: 1,
-                y: 0
-            },
-            type: 'orange'
+        const ghost_orange = ghostFactory({
+            type: 'orange', player: this.player
         })
-        this.characters.push(ghost_Orange)
+        this.characters.push(ghost_orange)
 
-        const ghost_Red = new Ghost({
-            position: {
-                x: 23,
-                y: 5
-            },
-            velocity: {
-                x: 1,
-                y: 0
-            },
-            type: 'red'
+        const ghost_Red = ghostFactory({
+            type: 'red', player: this.player
         })
         this.characters.push(ghost_Red)
     }

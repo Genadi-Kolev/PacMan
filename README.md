@@ -79,6 +79,11 @@ Added ghosts to game, alongside base Character class
 Ghost controller added
   * TODO: 
     * 4-way animations for ghost `done`
-    * Ghost kills player upon touch
+    * Ghost kills player upon touch `done`
     * All four ghosts `done` 
   * <ins>Edit</ins> 4 4-way animated ghosts *yay*
+
+# 26 March 2023
+Upon touching the player, ghosts will 'kill him', i.e. stop the game loop indefinitely, i.e. 'game over'
+  * TODO:
+    * Add power pills
