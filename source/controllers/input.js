@@ -5,18 +5,18 @@ export class Input {
     }
 
     _init() {
-        addEventListener('keypress', ({ key }) => {
-            switch (key) {
-                case 'w':
+        addEventListener('keypress', ({ code }) => {
+            switch (code) {
+                case 'KeyW':
                     this.direction = 'up'
                     break
-                case 'a':
+                case 'KeyA':
                     this.direction = 'left'
                     break
-                case 's':
+                case 'KeyS':
                     this.direction = 'down'
                     break
-                case 'd':
+                case 'KeyD':
                     this.direction = 'right'
                     break
             }

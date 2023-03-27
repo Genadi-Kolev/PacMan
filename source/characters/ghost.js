@@ -10,10 +10,6 @@ export class Ghost extends Character {
 
     #scared = false
     dead = false
-    setScared() {
-        this.#scared = true
-        setTimeout(() => { this.#scared = false }, 6000)
-    }
 
     constructor({ position, velocity, type, player }) {
         super({
@@ -42,6 +38,11 @@ export class Ghost extends Character {
                 this.#frameRow = 4
                 break;
         }
+    }
+
+    setScared() {
+        this.#scared = true
+        setTimeout(() => { this.#scared = false }, 6000)
     }
 
     draw() {

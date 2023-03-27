@@ -58,7 +58,7 @@ class Engine {
                     text_score.innerHTML = score++ * 10
                 }
             }
-            if (pellets.length - 1 == 0) {
+            if (pellets.length == 0) {
                 text.innerHTML = 'You have Won!!'
                 requestId = undefined
             }
@@ -84,8 +84,8 @@ class Engine {
 const engine = new Engine()
 engine.init()
 
-addEventListener('keypress', ({ key }) => {
-    if (key != '`')
+addEventListener('keypress', ({ code }) => {
+    if (code != 'Backquote')
         return
 
     if (!requestId) {
